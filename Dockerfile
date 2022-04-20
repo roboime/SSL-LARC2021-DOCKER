@@ -14,8 +14,8 @@ RUN apt-get install git -y \
 	xvfb \
 	&& apt-get clean
 RUN cd /home && mkdir labview-install && cd labview-install \ 
-	&& wget https://download.ni.com/support/softlib/labview/labview_runtime/2020%20SP1/LabVIEW2020SP1RTE_Linux.tgz \
-	&& tar -xvzf LabVIEW2020SP1RTE_Linux.tgz && rm *.i386.rpm && alien *.rpm --scripts && dpkg -i *.deb
+	&& wget https://download.ni.com/support/softlib/labview/labview_runtime/2021%20SP1/lv2021SP1runtime-engine-linux.iso \
+	&& mkdir /mnt/iso && mount -o loop lv2021SP1runtime-engine-linux.iso /mnt/iso && cd /mnt/iso && ./INSTALL
 RUN cd /home && git clone https://github.com/roboime/SSL_AI.git && cd SSL_AI && git checkout larc2021_fixBugsMerge && git pull \
 	&& cd .. && chmod -R 777 SSL_AI
 EXPOSE 20011/udp
